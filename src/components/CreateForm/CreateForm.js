@@ -8,7 +8,7 @@ import SwitchForm from "../SwitchForm/SwitchForm";
 import TextForm from "../TextForm/TextForm";
 import './CreateForm.css';
 
-const CreateForm = () => {
+const CreateForm = ({ loading }) => {
   const [state, setState] = useSharedState(FORM_STATE, {});
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { t } = useTranslation();
@@ -35,6 +35,7 @@ const CreateForm = () => {
           key={index}
           label={t(formComp.label)}
           placeholder={t(formComp.placeholder)}
+          disabled={loading}
         />
       }
       else if (formComp.type === 'Switch') {
@@ -46,6 +47,8 @@ const CreateForm = () => {
           defaultValue={formComp.defaultValue}
           key={index}
           label={t(formComp.label)}
+          disabled={loading}
+
         />
       }
       else {
