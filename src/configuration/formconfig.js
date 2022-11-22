@@ -3,16 +3,16 @@ import opening_hours from 'opening_hours';
 const openingHoursValidation = value => {
   let valid = false;
   try {
-    let oh = new opening_hours(value);
+    new opening_hours(value);
     valid = true;
   } catch (error) {
     valid = false;
   }
 
-  return value == '' || valid;
+  return value === '' || value === null || valid;
 }
 
-export default [
+const formconfig = [
   {
     name: 'reporter',
     rules: { required: true },
@@ -94,3 +94,5 @@ export default [
     defaultValue: false,
   },
 ]
+
+export default formconfig;

@@ -1,11 +1,20 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Create from './components/Create/Create';
+import CreateStepOne from './components/CreateSteps/CreateStepOne';
+import CreateStepTwo from './components/CreateSteps/CreateStepTwo';
+import Start from './components/Start/Start';
 import './i18n/i18n';
 
 const App = () => {
   return (
     <div className="App">
-      <Create />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Start />} />
+          <Route path="/Create-Step-1" element={<CreateStepOne />} />
+          <Route path="/Create-Step-2" element={<CreateStepTwo />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

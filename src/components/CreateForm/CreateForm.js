@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import FormConfig from "../../configuration/fromconfig";
+import formconfig from "../../configuration/formconfig";
+import { FORM_STATE, useSharedState } from '../../hooks/useSharedState';
 import SwitchForm from "../SwitchForm/SwitchForm";
 import TextForm from "../TextForm/TextForm";
 import './CreateForm.css';
 
-const CreateForm = ({ state, setState }) => {
+const CreateForm = () => {
+  const [state, setState] = useSharedState(FORM_STATE, {});
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { t } = useTranslation();
   const [positionError, setPositionError] = useState(null);
@@ -22,7 +24,7 @@ const CreateForm = ({ state, setState }) => {
   }
 
   const renderFormComponent = () => {
-    return FormConfig.map((formComp, index) => {
+    return formconfig.map((formComp, index) => {
       if (formComp.type === 'Text') {
         return <TextForm
           name={formComp.name}
@@ -62,7 +64,7 @@ const CreateForm = ({ state, setState }) => {
       </div>
       <Form onSubmit={handleSubmit((data) => onSubmit(data))} className='form-inline'>
         {renderFormComponent()}
-        <Button variant="success" type="submit" value='submit' >{t('submit')}</Button>
+        <Button variant="success" type="submit" value='submit' className='w-100' >{t('submit')}</Button>
       </Form>
     </>
   );

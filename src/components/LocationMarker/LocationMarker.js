@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Marker, useMapEvents } from "react-leaflet";
+import { useSharedState, FORM_STATE } from '../../hooks/useSharedState';
 
-const LocationMarker = ({ state, setState }) => {
+const LocationMarker = () => {
+  const [formState, setFormState] = useSharedState(FORM_STATE, {})
   const [position, setPosition] = useState(null);
+
   useMapEvents({
     click(e) {
-      setState({ ...state, latitude: e.latlng.lat, longitude: e.latlng.lng });
+      setFormState({ ...formState, latitude: e.latlng.lat, longitude: e.latlng.lng });
     }
   });
 
   useEffect(() => {
-    if (state !== null && state.latitude != null && state.longitude != null) {
-      setPosition({ lat: state.latitude, lng: state.longitude });
+    if (formState !== null && formState.latitude != null && formState.longitude != null) {
+      setPosition({ lat: formState.latitude, lng: formState.longitude });
     }
-  }, [setPosition, state]);
+  }, [setPosition, formState]);
 
   return position === null ? null : (
     <Marker position={position} />
