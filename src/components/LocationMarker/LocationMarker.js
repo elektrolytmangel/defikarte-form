@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Marker, useMapEvents } from "react-leaflet";
-import { useSharedState, FORM_STATE } from '../../hooks/useSharedState';
+import { FORM_STATE, useSharedState } from '../../hooks/useSharedState';
 
 const LocationMarker = () => {
   const [formState, setFormState] = useSharedState(FORM_STATE, {})

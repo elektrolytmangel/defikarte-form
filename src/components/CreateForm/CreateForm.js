@@ -20,7 +20,7 @@ const CreateForm = ({ loading, onSubmit }) => {
     } else {
       setPositionError(null);
     }
-  }, [state, setPositionError]);
+  }, [state, setPositionError, t]);
 
   const onHandleSubmit = (formState, formValues) => {
     if (formState.latitude !== null || formState.longitude !== null) {
@@ -74,7 +74,7 @@ const CreateForm = ({ loading, onSubmit }) => {
       </div>
       <Form onSubmit={handleSubmit((data) => onHandleSubmit(state, data))} className='form-inline'>
         {renderFormComponent()}
-        <Button variant="success" type="submit" value='submit' className='w-100' disabled={loading} >
+        <Button variant="success" type="submit" value='submit' className='w-100 my-3' disabled={loading} >
           {loading ? <Spinner
             as="span"
             animation="border"

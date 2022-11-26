@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import backend from '../../api/backend';
-import { PROGRESS_STATE, FORM_STATE, useSharedState } from '../../hooks/useSharedState';
+import { FORM_STATE, PROGRESS_STATE, useSharedState } from '../../hooks/useSharedState';
 import CreateForm from '../CreateForm/CreateForm';
 import CreateProgress from '../CreateProgress/CreateProgress';
 import ErrorAlert from '../ErrorAlert/ErrorAlert';
@@ -22,7 +22,7 @@ const CreateStepTwo = () => {
     backend.post('/defibrillator', aedData)
       .then(r => {
         setLoading(false);
-        navigate('/Success');
+        navigate('/Create-Step-Success');
       })
       .catch(e => {
         setError({ isError: true, msg: e.message });

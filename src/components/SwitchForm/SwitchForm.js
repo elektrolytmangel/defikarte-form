@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 
-const SwitchForm = ({ name, handle, label, disabled }) => {
+const SwitchForm = ({ handle, label, disabled }) => {
   return (
     <div className='mb-2'>
       <Form.Check
