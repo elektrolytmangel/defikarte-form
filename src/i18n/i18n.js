@@ -29,7 +29,10 @@ i18n
       de: {
         translation: {
           access: 'Zugänglich',
+          contact_support: 'Support kontaktieren',
           description: 'Beschreibung',
+          error_api: 'Es ist ein Fehler beim erstellen des Defibrillators aufgetreten. Versuche es nocheinmal,  bitte kontaktiere bei wiederholtem Fehler unseren Support. Fehlermeldung: <1>{{errorMsg}}</1>',
+          error_api_title: 'Defibrillator konnte nicht gemeldet werden!',
           error_description: 'Die maximale Länge beträgt 200 Zeichen',
           error_location: 'Der Standort wird benötigt, maximale Länge 200 Zeichen',
           error_openinghours: 'Die eingegebenen Öffnungzeiten entsprechen nicht dem geforderten Format.',
@@ -57,6 +60,7 @@ i18n
           step_two: '2. Informationen erfassen',
           submit: 'Meldung absenden',
           title: 'Defibrillator melden',
+          try_again: 'Erneut versuchen',
         }
       }
     }

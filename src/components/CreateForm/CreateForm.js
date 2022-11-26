@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Button, Form } from "react-bootstrap";
+import { useEffect, useState } from 'react';
+import { Button, Form, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import formconfig from "../../configuration/formconfig";
@@ -8,18 +8,25 @@ import SwitchForm from "../SwitchForm/SwitchForm";
 import TextForm from "../TextForm/TextForm";
 import './CreateForm.css';
 
-const CreateForm = ({ loading }) => {
+const CreateForm = ({ loading, onSubmit }) => {
   const [state, setState] = useSharedState(FORM_STATE, {});
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { t } = useTranslation();
   const [positionError, setPositionError] = useState(null);
 
-  const onSubmit = (formValues) => {
+  useEffect(() => {
     if (state.latitude == null || state.longitude == null) {
       setPositionError(t('error_pos'))
     } else {
       setPositionError(null);
-      setState({ ...state, ...formValues, isValid: true });
+    }
+  }, [state, setPositionError]);
+
+  const onHandleSubmit = (formState, formValues) => {
+    if (formState.latitude !== null || formState.longitude !== null) {
+      const submitedState = { ...formState, ...formValues, emergencyPhone: '144' };
+      setState(submitedState);
+      onSubmit(submitedState);
     }
   }
 
@@ -65,9 +72,17 @@ const CreateForm = ({ loading }) => {
         <p id='position' className={positionError != null ? 'border-bottom  border-danger' : 'border-bottom'}>{position}</p>
         {positionError !== null ? <p className="error">{positionError}</p> : null}
       </div>
-      <Form onSubmit={handleSubmit((data) => onSubmit(data))} className='form-inline'>
+      <Form onSubmit={handleSubmit((data) => onHandleSubmit(state, data))} className='form-inline'>
         {renderFormComponent()}
-        <Button variant="success" type="submit" value='submit' className='w-100' >{t('submit')}</Button>
+        <Button variant="success" type="submit" value='submit' className='w-100' disabled={loading} >
+          {loading ? <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          /> : null}
+          {t('submit')}</Button>
       </Form>
     </>
   );
