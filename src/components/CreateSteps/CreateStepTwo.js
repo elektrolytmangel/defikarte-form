@@ -41,11 +41,11 @@ const CreateStepTwo = () => {
   }, [setProgressState]);
 
   return (
-    <div className='container-fluid vh-100'>
+    <div className='container-fluid vh-100 d-flex flex-column'>
       <CreateProgress title={t('step_two')} progress={progressState} />
       <ErrorAlert isError={error.isError} errorMsg={error.msg} retry={() => retry(state)} resetError={() => setError(initErrorState)} />
       <CreateForm loading={loading} onSubmit={onSubmit} />
-    </div>
+    </div >
   )
 }
 
