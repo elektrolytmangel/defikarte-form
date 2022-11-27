@@ -13,7 +13,7 @@ const CreateStepTwo = () => {
   const { t } = useTranslation();
   const navigate = useNavigate()
   const [progressState, setProgressState] = useSharedState(PROGRESS_STATE, 0);
-  const [state] = useSharedState(FORM_STATE, {});
+  const [state, setState] = useSharedState(FORM_STATE, {});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(initErrorState);
 
@@ -22,6 +22,7 @@ const CreateStepTwo = () => {
     backend.post('/defibrillator', aedData)
       .then(r => {
         setLoading(false);
+        setState({}); // reseting form data, so no old data anymore. user has to start from beginning
         navigate('/Create-Step-Success');
       })
       .catch(e => {
@@ -40,7 +41,7 @@ const CreateStepTwo = () => {
   }, [setProgressState]);
 
   return (
-    <div className='container vh-100'>
+    <div className='container-fluid vh-100'>
       <CreateProgress title={t('step_two')} progress={progressState} />
       <ErrorAlert isError={error.isError} errorMsg={error.msg} retry={() => retry(state)} resetError={() => setError(initErrorState)} />
       <CreateForm loading={loading} onSubmit={onSubmit} />

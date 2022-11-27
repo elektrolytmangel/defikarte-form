@@ -5,9 +5,11 @@ const CreateStepSuccess = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="container vh-100">
-      <CreateProgress title={t('step_success')} progress={100} animated={false} />
-      <p>{t('thanks')}</p>
+    <div className="container-fluid vh-100">
+      <div className="row">
+        <CreateProgress title={t('step_success')} progress={100} animated={false} />
+        <p>{t('thanks')}</p>
+      </div>
     </div>
   )
 }

@@ -18,12 +18,11 @@ const CreateStepOne = () => {
 
   const positionAvailable = (formState.latitude != null && formState.longitude != null);
   return (
-    <div className='container vh-100'>
+    <div className='container-fluid vh-100 d-flex flex-column'>
       <div className="row">
         <CreateProgress title={t('step_one')} progress={progressState} />
       </div>
-      <div className="row">
-
+      <div className="row flex-grow-1" >
         <Map />
       </div>
       <div className="row m-2">
@@ -33,7 +32,6 @@ const CreateStepOne = () => {
           onClick={() => navigate('/Create-Step-2')}>{t('select')}
         </Button>
       </div>
-
     </div>
   )
 }

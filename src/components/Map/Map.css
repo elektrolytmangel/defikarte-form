@@ -1,7 +1,5 @@
 #map {
-  min-height: 50vh;
-  height: 78vh;
-  max-height: 85vh;
+  height: 100%;
   width: 100%;
   background-color: black;
 }

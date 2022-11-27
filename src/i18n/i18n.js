@@ -87,7 +87,7 @@ i18n
           select: 'Position bestätigen',
           start: 'Neuer Defibrillator erfassen',
           step_one: '1. Position auswählen',
-          step_success: 'Defibrillator erforlgreich erfasst!',
+          step_success: 'Defibrillator erfolgreich erfasst!',
           step_two: '2. Informationen erfassen',
           submit: 'Meldung absenden',
           thanks: 'Besten Dank für deine Unterstützung!',

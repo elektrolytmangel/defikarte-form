@@ -9,7 +9,7 @@ const Start = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='container'>
+    <div className='container-fluid'>
       <div className='row mt-5'>
         <div className='d-flex justify-content-center align-items-center'>
           <div className='border border-2 rounded-circle d-flex justify-content-center align-items-center' id='logo-border'>
@@ -17,7 +17,7 @@ const Start = () => {
           </div>
         </div>
       </div>
-      <div className='row mt-5 '>
+      <div className='row mt-5 ms-5 me-5'>
         <Button variant='success' onClick={() => navigate('/Create-Step-1')} >{t('start')}</Button >
       </div>
     </div>
