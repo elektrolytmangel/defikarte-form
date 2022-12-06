@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build React App
     steps:
+    - uses: actions/checkout@v2
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.5.1
     - name: npm ci, build and test
