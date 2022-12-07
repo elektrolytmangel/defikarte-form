@@ -80,7 +80,7 @@ i18n
           placeholder_location: 'Schulhaus Zürich West, neben Eingang',
           placeholder_operator: 'Gemeinde, Verein, Privatperson',
           placeholder_operatorphone: '+41 79 000 00 00',
-          placeholder_openinghours: 'Mo-Fr: 08:00-17:00',
+          placeholder_openinghours: '24/7 oder Mo-Fr: 08:00-17:00',
           placeholder_reporter: 'Max Mustermann',
           position: 'Koordinaten',
           reporter: 'Melder',
