@@ -35,7 +35,6 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az storage blob delete-batch -s $web --pattern *
             az storage blob upload-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} --overwrite true --auth-mode key -d '$web' -s ./build
  
   # Azure logout
