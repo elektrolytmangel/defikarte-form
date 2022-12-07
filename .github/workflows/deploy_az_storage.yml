@@ -15,6 +15,9 @@ env:
 jobs:
   build_and_deploy_app:
     runs-on: ubuntu-latest
+    environment:
+      name: "${{ github.ref == 'refs/heads/master' && 'production' || 'staging' }}"
+      url: "${{ github.ref == 'refs/heads/master' && 'https://defikarteformstaticapp.z1.web.core.windows.net/' || 'https://defikarteformapp.z1.web.core.windows.net/' }}"
     name: Build React App
     steps:
     - uses: actions/checkout@v2
@@ -32,7 +35,8 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az storage blob upload-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} --auth-mode key -d '$web' -s ./build
+            az storage blob delete-batch -s $web --pattern *
+            az storage blob upload-batch --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} --overwrite true --auth-mode key -d '$web' -s ./build
  
   # Azure logout
     - name: logout
