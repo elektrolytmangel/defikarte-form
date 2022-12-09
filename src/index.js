@@ -3,9 +3,9 @@ import 'leaflet/dist/leaflet.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import './custom.scss';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

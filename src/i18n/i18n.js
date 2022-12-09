@@ -51,7 +51,7 @@ i18n
           step_success: 'AED successful created!',
           step_two: '2. Add informationen',
           submit: 'Create',
-          thanks: 'Thank you for your support! The Defi will appear in the next hours on the map.',
+          thanks: 'Thank you for your support! The AED will appear in the next hours on the map.',
           title: 'Report AED',
           try_again: 'Try again',
         }
@@ -90,7 +90,7 @@ i18n
           step_success: 'Defibrillator erfolgreich erfasst!',
           step_two: '2. Informationen erfassen',
           submit: 'Meldung absenden',
-          thanks: 'Besten Dank für deine Unterstützung! Der Defi wird innerhalb der nächsten Stunden auf der Karte erscheinen.',
+          thanks: 'Besten Dank für deine Unterstützung! Der Defibrillator wird innerhalb der nächsten Stunden auf der Karte erscheinen.',
           title: 'Defibrillator melden',
           try_again: 'Erneut versuchen',
         }
