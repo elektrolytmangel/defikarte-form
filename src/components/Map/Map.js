@@ -10,7 +10,7 @@ const Map = () => {
   }, [],)
 
   return (
-    <MapContainer id='map' center={[46.9479, 7.4477]} zoom={12} scrollWheelZoom={true}>
+    <MapContainer id='map' center={[47.39595583, 8.637702055]} zoom={11} scrollWheelZoom={true}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://tile.osm.ch/osm-swiss-style/{z}/{x}/{y}.png"
