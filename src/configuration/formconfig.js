@@ -74,6 +74,7 @@ const formconfig = [
   {
     name: 'operatorPhone',
     rules: { pattern: /^(\+41|0041|0)\s?(\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$/ },
+    // wäre hier die richtige Stelle für den Regex der +41 forciert und umschreibt?
     type: 'Text',
     label: 'operatorphone',
     placeholder: 'placeholder_operatorphone',
