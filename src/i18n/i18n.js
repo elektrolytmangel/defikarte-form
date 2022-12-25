@@ -37,7 +37,7 @@ i18n
           operator: 'Operator',
           operatorphone: 'Operators phone',
           placeholder_description: 'i.e.: while Store is open',
-          placeholder_level: '6th floor',
+          placeholder_level: '6',
           placeholder_location: 'Schoolhouse Zurich West, near entrance',
           placeholder_operator: 'Municipality, association, private person',
           placeholder_operatorphone: '+41 79 000 00 00',

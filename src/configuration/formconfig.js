@@ -16,7 +16,7 @@ const formconfig = [
   {
     name: 'reporter',
     rules: { required: true },
-    type: 'Text',
+    type: 'text',
     label: 'reporter',
     placeholder: 'placeholder_reporter',
     defaultValue: '',
@@ -25,7 +25,7 @@ const formconfig = [
   {
     name: 'location',
     rules: { required: true, maxLength: 200 },
-    type: 'Text',
+    type: 'text',
     label: 'location',
     placeholder: 'placeholder_location',
     defaultValue: '',
@@ -34,7 +34,7 @@ const formconfig = [
   {
     name: 'level',
     rules: { required: false },
-    type: 'Text',
+    type: 'number',
     label: 'level',
     placeholder: 'placeholder_level',
     defaultValue: '',
@@ -42,7 +42,7 @@ const formconfig = [
   {
     name: 'description',
     rules: { required: false, maxLength: 200 },
-    type: 'Text',
+    type: 'text',
     label: 'description',
     placeholder: 'placeholder_description',
     defaultValue: '',
@@ -55,7 +55,7 @@ const formconfig = [
   {
     name: 'openingHours',
     rules: { validate: openingHoursValidation },
-    type: 'Text',
+    type: 'text',
     label: 'openinghours',
     placeholder: 'placeholder_openinghours',
     defaultValue: '24/7',
@@ -66,16 +66,15 @@ const formconfig = [
   {
     name: 'operator',
     rules: { required: false },
-    type: 'Text',
+    type: 'text',
     label: 'operator',
     placeholder: 'placeholder_operator',
     defaultValue: '',
   },
   {
     name: 'operatorPhone',
-    rules: { pattern: /^(\+41|0041|0)\s?(\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$/ },
-    // wäre hier die richtige Stelle für den Regex der +41 forciert und umschreibt?
-    type: 'Text',
+    rules: { pattern: /^(\+41|0041)\s?(\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$/ },
+    type: 'text',
     label: 'operatorphone',
     placeholder: 'placeholder_operatorphone',
     keyboardType: 'phone-pad',
@@ -84,13 +83,13 @@ const formconfig = [
   },
   {
     name: 'access',
-    type: 'Switch',
+    type: 'switch',
     label: 'access',
     defaultValue: false,
   },
   {
     name: 'indoor',
-    type: 'Switch',
+    type: 'switch',
     label: 'indoor',
     defaultValue: false,
   },
