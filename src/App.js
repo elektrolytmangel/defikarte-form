@@ -3,12 +3,14 @@ import './App.css';
 import CreateStepOne from './components/CreateSteps/CreateStepOne';
 import CreateStepSuccess from './components/CreateSteps/CreateStepSuccess';
 import CreateStepTwo from './components/CreateSteps/CreateStepTwo';
+import EnvironmentInfo from './components/EnvironmentInfo/EnvironmentInfo';
 import Start from './components/Start/Start';
 import './i18n/i18n';
 
 const App = () => {
   return (
     <div className="App">
+      <EnvironmentInfo />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Start />} />
