@@ -13,7 +13,7 @@ const EnvironmentInfo = () => {
   if (process.env.REACT_APP_ENVIRONMENT !== 'production' && show) {
     return (
       <Alert style={{ position: 'fixed', top: 0 }} className="w-100" dismissible variant="warning" onClose={e => onClose(e)}>
-        <Alert.Heading>{t('environment_info')} {process.env.NODE_ENV}</Alert.Heading>
+        <Alert.Heading>{t('environment_info')} {process.env.REACT_APP_ENVIRONMENT}, Build: {process.env.NODE_ENV}</Alert.Heading>
       </Alert>
     )
   }
