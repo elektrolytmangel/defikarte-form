@@ -32,20 +32,7 @@ const CreateForm = ({ loading, onSubmit }) => {
 
   const renderFormComponent = () => {
     return formconfig.map((formComp, index) => {
-      if (formComp.type === 'Text') {
-        return <TextForm
-          name={formComp.name}
-          handle={register(formComp.name, { ...formComp.rules })}
-          errors={errors}
-          errorMsg={t(formComp.errorMsg)}
-          defaultValue={formComp.defaultValue}
-          key={index}
-          label={t(formComp.label)}
-          placeholder={t(formComp.placeholder)}
-          disabled={loading}
-        />
-      }
-      else if (formComp.type === 'Switch') {
+      if (formComp.type === 'switch') {
         return <SwitchForm
           name={formComp.name}
           handle={register(formComp.name, { ...formComp.rules })}
@@ -59,7 +46,18 @@ const CreateForm = ({ loading, onSubmit }) => {
         />
       }
       else {
-        return null;
+        return <TextForm
+          name={formComp.name}
+          handle={register(formComp.name, { ...formComp.rules })}
+          errors={errors}
+          errorMsg={t(formComp.errorMsg)}
+          defaultValue={formComp.defaultValue}
+          key={index}
+          label={t(formComp.label)}
+          placeholder={t(formComp.placeholder)}
+          disabled={loading}
+          type={formComp.type}
+        />
       }
     })
   }

@@ -11,7 +11,8 @@ on:
 env:
   REACT_APP_BACKEND_API: ${{ secrets.BACKEND_API_URL }}
   REACT_APP_BACKEND_API_KEY: ${{ secrets.BACKEND_API_KEY }}
-
+  REACT_APP_ENVIRONMENT: "${{ github.ref == 'refs/heads/master' && 'production' || 'staging' }}"
+  
 jobs:
   build_and_deploy_app:
     runs-on: ubuntu-latest
