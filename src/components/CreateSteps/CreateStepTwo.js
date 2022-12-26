@@ -19,16 +19,15 @@ const CreateStepTwo = () => {
 
   const onSubmit = (aedData) => {
     setLoading(true);
-    backend.post('/defibrillator', aedData)
+    backend.post('/defibrillator', { ...aedData, source: 'local_knowledge, defikarte.ch' })
       .then(r => {
-        setLoading(false);
         setState({}); // reseting form data, so no old data anymore. user has to start from beginning
         navigate('/Create-Step-Success');
       })
       .catch(e => {
         setError({ isError: true, msg: e.message });
-        setLoading(false);
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   const retry = (aedData) => {
