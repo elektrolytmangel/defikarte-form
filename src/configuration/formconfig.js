@@ -1,4 +1,5 @@
 import opening_hours from 'opening_hours';
+import { isPossiblePhoneNumber, isValidPhoneNumber, validatePhoneNumberLength } from 'libphonenumber-js'
 
 const openingHoursValidation = value => {
   let valid = false;
@@ -10,6 +11,15 @@ const openingHoursValidation = value => {
   }
 
   return value === '' || value === null || valid;
+}
+
+const phonenumberValidation = value => {
+  let valid =
+    isPossiblePhoneNumber(value) === true &&
+    isValidPhoneNumber(value) === true &&
+    validatePhoneNumberLength(value, 'CH') === undefined;
+
+  return valid;
 }
 
 const formconfig = [
@@ -73,7 +83,7 @@ const formconfig = [
   },
   {
     name: 'operatorPhone',
-    rules: { pattern: /^(\+41|0041)\s?(\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})$/ },
+    rules: { validate: phonenumberValidation },
     type: 'text',
     label: 'operatorphone',
     placeholder: 'placeholder_operatorphone',
