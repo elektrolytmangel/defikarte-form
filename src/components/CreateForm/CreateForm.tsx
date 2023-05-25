@@ -16,7 +16,7 @@ type Props = {
 
 const CreateForm = ({ loading, onSubmit }: Props) => {
   const [state, setState] = useSharedState(FORM_STATE, {} as AEDData);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm<AEDData>();
   const { t } = useTranslation();
   const [positionError, setPositionError] = useState<string | null>(null);
 
@@ -28,9 +28,9 @@ const CreateForm = ({ loading, onSubmit }: Props) => {
     }
   }, [state, setPositionError, t]);
 
-  const onHandleSubmit = (formState: any, formValues: any) => {
+  const onHandleSubmit = (formState: AEDData, formValues: AEDData) => {
     if (formState.latitude != null && formState.longitude != null) {
-      const submitedState = { ...formState, ...formValues, emergencyPhone: '144' };
+      const submitedState = { ...formState, ...formValues, emergencyPhone: '144' } as AEDData;
       setState(submitedState);
       onSubmit(submitedState);
     }

@@ -1,5 +1,18 @@
 interface FormProps {
-  name: string,
+  name: "id"
+  | "longitude"
+  | "latitude"
+  | "location"
+  | "reporter"
+  | "description"
+  | "access"
+  | "operator"
+  | "operatorPhone"
+  | "openingHours"
+  | "emergencyPhone"
+  | "indoor"
+  | "source"
+  | "level",
   rules?: any,
   type: 'text' | 'number' | 'switch',
   label: string,
