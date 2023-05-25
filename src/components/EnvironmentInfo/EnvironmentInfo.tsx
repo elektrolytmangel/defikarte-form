@@ -6,7 +6,7 @@ const EnvironmentInfo = () => {
   const { t } = useTranslation();
   const [show, setShow] = useState(true);
 
-  const onClose = (e) => {
+  const onClose = (e: any) => {
     setShow(false);
   }
 

@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { FORM_STATE, PROGRESS_STATE, useSharedState } from "../../hooks/useSharedState";
 import CreateProgress from "../CreateProgress/CreateProgress";
 import Map from "../Map/Map";
+import { AEDData } from "../../model/app";
 
 const CreateStepOne = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [progressState, setProgressState] = useSharedState(PROGRESS_STATE, 0);
-  const [formState] = useSharedState(FORM_STATE, {});
+  const [formState] = useSharedState(FORM_STATE, {} as AEDData);
 
   useEffect(() => {
     setProgressState(50);

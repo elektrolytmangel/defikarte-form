@@ -1,6 +1,12 @@
 import { ProgressBar } from "react-bootstrap";
 
-const CreateProgress = ({ title, progress, animated = true }) => {
+type Props = {
+  title: string,
+  progress: number,
+  animated?: boolean
+}
+
+const CreateProgress = ({ title, progress, animated = true }: Props) => {
 
   return (
     <div className="my-2 margin-auto">
