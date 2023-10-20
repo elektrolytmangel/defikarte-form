@@ -6,6 +6,7 @@ import { FORM_STATE, PROGRESS_STATE, useSharedState } from '../../hooks/useShare
 import CreateForm from '../CreateForm/CreateForm';
 import CreateProgress from '../CreateProgress/CreateProgress';
 import ErrorAlert from '../ErrorAlert/ErrorAlert';
+import { AEDData } from '../../model/app';
 
 const initErrorState = { isError: false, msg: '' };
 
@@ -13,15 +14,15 @@ const CreateStepTwo = () => {
   const { t } = useTranslation();
   const navigate = useNavigate()
   const [progressState, setProgressState] = useSharedState(PROGRESS_STATE, 0);
-  const [state, setState] = useSharedState(FORM_STATE, {});
+  const [state, setState] = useSharedState(FORM_STATE, {} as AEDData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(initErrorState);
 
-  const onSubmit = (aedData) => {
+  const onSubmit = (aedData: AEDData) => {
     setLoading(true);
     backend.post('/defibrillator', { ...aedData, source: 'local_knowledge, defikarte.ch' })
       .then(r => {
-        setState({}); // reseting form data, so no old data anymore. user has to start from beginning
+        setState({} as AEDData); // reseting form data, so no old data anymore. user has to start from beginning
         navigate('/Create-Step-Success');
       })
       .catch(e => {
@@ -30,7 +31,7 @@ const CreateStepTwo = () => {
       .finally(() => setLoading(false));
   }
 
-  const retry = (aedData) => {
+  const retry = (aedData: AEDData) => {
     setError(initErrorState);
     onSubmit(aedData);
   }
@@ -42,7 +43,11 @@ const CreateStepTwo = () => {
   return (
     <div className='container-fluid vh-100 d-flex flex-column'>
       <CreateProgress title={t('step_two')} progress={progressState} />
-      <ErrorAlert isError={error.isError} errorMsg={error.msg} retry={() => retry(state)} resetError={() => setError(initErrorState)} />
+      <ErrorAlert
+        isError={error.isError}
+        errorMsg={error.msg}
+        retry={() => retry(state)}
+        resetError={() => setError(initErrorState)} />
       <CreateForm loading={loading} onSubmit={onSubmit} />
     </div >
   )

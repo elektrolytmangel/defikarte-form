@@ -1,9 +1,15 @@
-import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import { Trans, useTranslation } from 'react-i18next';
 
-const ErrorAlert = ({ isError, resetError, retry, errorMsg = 'n/a' }) => {
+type Props = {
+  isError: boolean,
+  resetError: () => void,
+  retry: () => void,
+  errorMsg: string,
+}
+
+const ErrorAlert = ({ isError, resetError, retry, errorMsg = 'n/a' }: Props) => {
   const { t } = useTranslation();
 
   if (isError) {
@@ -11,9 +17,10 @@ const ErrorAlert = ({ isError, resetError, retry, errorMsg = 'n/a' }) => {
       <Alert variant="danger" onClose={() => resetError()} dismissible>
         <Alert.Heading>{t('error_api_title')}</Alert.Heading>
         <p>
-          <Trans i18nKey="error_api">
-            Errormessage: <strong>{{ errorMsg }}</strong>
-          </Trans>
+          <Trans i18nKey="error_api"
+            defaults="Errormessage: <0>{errorMsg}</0>"
+            components={[<strong>dummyChild</strong>]}
+            values={{ errorMsg }} />
         </p>
         <hr />
         <div className="d-flex justify-content-end">
@@ -28,6 +35,9 @@ const ErrorAlert = ({ isError, resetError, retry, errorMsg = 'n/a' }) => {
         </div>
       </Alert>
     );
+  }
+  else {
+    return null;
   }
 }
 

@@ -1,7 +1,8 @@
 import opening_hours from 'opening_hours';
 import { isPossiblePhoneNumber, isValidPhoneNumber, validatePhoneNumberLength } from 'libphonenumber-js'
+import { FormProps } from '../model/app';
 
-const openingHoursValidation = value => {
+const openingHoursValidation = (value: string) => {
   let valid = false;
   try {
     new opening_hours(value);
@@ -13,7 +14,7 @@ const openingHoursValidation = value => {
   return value === '' || value === null || valid;
 }
 
-const phonenumberValidation = value => {
+const phonenumberValidation = (value: string) => {
   let valid =
     isPossiblePhoneNumber(value) === true &&
     isValidPhoneNumber(value) === true &&
@@ -22,7 +23,7 @@ const phonenumberValidation = value => {
   return valid;
 }
 
-const formconfig = [
+const formconfig: FormProps[] = [
   {
     name: 'reporter',
     rules: { required: true },
@@ -48,6 +49,7 @@ const formconfig = [
     label: 'level',
     placeholder: 'placeholder_level',
     defaultValue: '',
+    errorMsg: '',
   },
   {
     name: 'description',
@@ -80,6 +82,7 @@ const formconfig = [
     label: 'operator',
     placeholder: 'placeholder_operator',
     defaultValue: '',
+    errorMsg: '',
   },
   {
     name: 'operatorPhone',

@@ -1,7 +1,14 @@
 import { Form } from "react-bootstrap";
 import './TextForm.css';
+import { FormProps } from "../../model/app";
 
-const TextForm = ({ name, handle, label, errors, errorMsg, placeholder, disabled, type }) => {
+interface Props extends FormProps {
+  handle: any,
+  errors: any,
+  disabled: boolean,
+}
+
+const TextForm = ({ name, handle, label, errors, errorMsg, placeholder, disabled, type }: Props) => {
   return (
     <div className="mb-2">
       <Form.Label htmlFor={name}>{label}</Form.Label>

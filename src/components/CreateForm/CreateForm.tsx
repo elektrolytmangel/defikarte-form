@@ -7,12 +7,18 @@ import { FORM_STATE, useSharedState } from '../../hooks/useSharedState';
 import SwitchForm from "../SwitchForm/SwitchForm";
 import TextForm from "../TextForm/TextForm";
 import './CreateForm.css';
+import { AEDData } from '../../model/app';
 
-const CreateForm = ({ loading, onSubmit }) => {
-  const [state, setState] = useSharedState(FORM_STATE, {});
-  const { register, handleSubmit, formState: { errors } } = useForm();
+type Props = {
+  loading: boolean,
+  onSubmit: (aedData: AEDData) => void
+}
+
+const CreateForm = ({ loading, onSubmit }: Props) => {
+  const [state, setState] = useSharedState(FORM_STATE, {} as AEDData);
+  const { register, handleSubmit, formState: { errors } } = useForm<AEDData>();
   const { t } = useTranslation();
-  const [positionError, setPositionError] = useState(null);
+  const [positionError, setPositionError] = useState<string | null>(null);
 
   useEffect(() => {
     if (state.latitude == null || state.longitude == null) {
@@ -22,9 +28,9 @@ const CreateForm = ({ loading, onSubmit }) => {
     }
   }, [state, setPositionError, t]);
 
-  const onHandleSubmit = (formState, formValues) => {
+  const onHandleSubmit = (formState: AEDData, formValues: AEDData) => {
     if (formState.latitude != null && formState.longitude != null) {
-      const submitedState = { ...formState, ...formValues, emergencyPhone: '144' };
+      const submitedState = { ...formState, ...formValues, emergencyPhone: '144' } as AEDData;
       setState(submitedState);
       onSubmit(submitedState);
     }
@@ -34,27 +40,24 @@ const CreateForm = ({ loading, onSubmit }) => {
     return formconfig.map((formComp, index) => {
       if (formComp.type === 'switch') {
         return <SwitchForm
-          name={formComp.name}
           handle={register(formComp.name, { ...formComp.rules })}
-          errors={errors}
-          errorMsg={t(formComp.errorMsg)}
-          defaultValue={formComp.defaultValue}
           key={index}
           label={t(formComp.label)}
           disabled={loading}
-
         />
       }
       else {
+        const errorMsg = t(formComp.errorMsg || 'default_error');
+        const placeholder = t(formComp.placeholder || '');
         return <TextForm
           name={formComp.name}
           handle={register(formComp.name, { ...formComp.rules })}
           errors={errors}
-          errorMsg={t(formComp.errorMsg)}
+          errorMsg={errorMsg}
           defaultValue={formComp.defaultValue}
           key={index}
           label={t(formComp.label)}
-          placeholder={t(formComp.placeholder)}
+          placeholder={placeholder}
           disabled={loading}
           type={formComp.type}
         />
@@ -66,8 +69,8 @@ const CreateForm = ({ loading, onSubmit }) => {
   return (
     <Form onSubmit={handleSubmit((data) => onHandleSubmit(state, data))} className='form-inline'>
       <div className="mb-3 form-inline">
-        <p htmlFor='position'>{t('position')}</p>
-        <p id='position' className={positionError != null ? 'border-bottom  border-danger' : 'border-bottom'}>{position}</p>
+        <p>{t('position')}</p>
+        <p className={positionError != null ? 'border-bottom  border-danger' : 'border-bottom'}>{position}</p>
         {positionError !== null ? <p className="error">{positionError}</p> : null}
       </div>
       {renderFormComponent()}
