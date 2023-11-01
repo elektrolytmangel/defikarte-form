@@ -21,7 +21,7 @@ const phonenumberValidation = (value: string) => {
     isValidPhoneNumber(value) === true &&
     validatePhoneNumberLength(value, 'CH') === undefined;
 
-  return valid;
+  return value === null || value === '' || valid;
 };
 
 const formconfig: FormProps[] = [
