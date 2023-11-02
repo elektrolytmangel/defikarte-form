@@ -1,28 +1,30 @@
 import opening_hours from 'opening_hours';
-import { isPossiblePhoneNumber, isValidPhoneNumber, validatePhoneNumberLength } from 'libphonenumber-js'
+import { isPossiblePhoneNumber, isValidPhoneNumber, validatePhoneNumberLength } from 'libphonenumber-js';
+import { FormProps } from '../model/app';
 
-const openingHoursValidation = value => {
-  let valid = false;
+const openingHoursErrorsAndWarnings = (value: string): string | boolean => {
+  let msg = '';
   try {
-    new opening_hours(value);
-    valid = true;
+    const oh = new opening_hours(value);
+    const warnings = oh.getWarnings();
+    msg = warnings.join(', ');
   } catch (error) {
-    valid = false;
+    msg = 'error_openinghours';
   }
 
-  return value === '' || value === null || valid;
-}
+  return msg === '' || value === null || value === '' ? true : msg;
+};
 
-const phonenumberValidation = value => {
+const phonenumberValidation = (value: string) => {
   let valid =
     isPossiblePhoneNumber(value) === true &&
     isValidPhoneNumber(value) === true &&
     validatePhoneNumberLength(value, 'CH') === undefined;
 
-  return valid;
-}
+  return value === null || value === '' || valid;
+};
 
-const formconfig = [
+const formconfig: FormProps[] = [
   {
     name: 'reporter',
     rules: { required: true },
@@ -48,6 +50,7 @@ const formconfig = [
     label: 'level',
     placeholder: 'placeholder_level',
     defaultValue: '',
+    errorMsg: '',
   },
   {
     name: 'description',
@@ -64,14 +67,13 @@ const formconfig = [
   automatische opening hours validation wäre gut: https://wiki.openstreetmap.org/wiki/Key:opening_hours#Implementation*/
   {
     name: 'openingHours',
-    rules: { validate: openingHoursValidation },
+    rules: { validate: openingHoursErrorsAndWarnings },
     type: 'text',
     label: 'openinghours',
     placeholder: 'placeholder_openinghours',
     defaultValue: '24/7',
     useSwitch: true,
     multiline: true,
-    errorMsg: 'error_openinghours',
   },
   {
     name: 'operator',
@@ -80,6 +82,7 @@ const formconfig = [
     label: 'operator',
     placeholder: 'placeholder_operator',
     defaultValue: '',
+    errorMsg: '',
   },
   {
     name: 'operatorPhone',
@@ -103,6 +106,6 @@ const formconfig = [
     label: 'indoor',
     defaultValue: false,
   },
-]
+];
 
 export default formconfig;
