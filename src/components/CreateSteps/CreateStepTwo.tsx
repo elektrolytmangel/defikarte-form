@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import backend from '../../api/backend';
 import { FORM_STATE, PROGRESS_STATE, useSharedState } from '../../hooks/useSharedState';
+import { AEDData } from '../../model/app';
 import CreateForm from '../CreateForm/CreateForm';
 import CreateProgress from '../CreateProgress/CreateProgress';
 import ErrorAlert from '../ErrorAlert/ErrorAlert';
-import { AEDData } from '../../model/app';
 
 const initErrorState = { isError: false, msg: '' };
 
 const CreateStepTwo = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [progressState, setProgressState] = useSharedState(PROGRESS_STATE, 0);
   const [state, setState] = useSharedState(FORM_STATE, {} as AEDData);
   const [loading, setLoading] = useState(false);
@@ -20,37 +20,39 @@ const CreateStepTwo = () => {
 
   const onSubmit = (aedData: AEDData) => {
     setLoading(true);
-    backend.post('/defibrillator', { ...aedData, source: 'local_knowledge, defikarte.ch' })
-      .then(r => {
+    backend
+      .post('v2/defibrillator', { ...aedData, source: 'local_knowledge, defikarte.ch' })
+      .then((r) => {
         setState({} as AEDData); // reseting form data, so no old data anymore. user has to start from beginning
         navigate('/Create-Step-Success');
       })
-      .catch(e => {
+      .catch((e) => {
         setError({ isError: true, msg: e.message });
       })
       .finally(() => setLoading(false));
-  }
+  };
 
   const retry = (aedData: AEDData) => {
     setError(initErrorState);
     onSubmit(aedData);
-  }
+  };
 
   useEffect(() => {
     setProgressState(100);
   }, [setProgressState]);
 
   return (
-    <div className='container-fluid vh-100 d-flex flex-column'>
+    <div className="container-fluid vh-100 d-flex flex-column">
       <CreateProgress title={t('step_two')} progress={progressState} />
       <ErrorAlert
         isError={error.isError}
         errorMsg={error.msg}
         retry={() => retry(state)}
-        resetError={() => setError(initErrorState)} />
+        resetError={() => setError(initErrorState)}
+      />
       <CreateForm loading={loading} onSubmit={onSubmit} />
-    </div >
-  )
-}
+    </div>
+  );
+};
 
 export default CreateStepTwo;

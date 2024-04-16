@@ -96,9 +96,11 @@ const formconfig: FormProps[] = [
   },
   {
     name: 'access',
-    type: 'switch',
+    type: 'select',
     label: 'access',
-    defaultValue: false,
+    defaultValue: '',
+    options: ['yes', 'no', 'permissive', 'private'],
+    infoText: 'access_info',
   },
   {
     name: 'indoor',
