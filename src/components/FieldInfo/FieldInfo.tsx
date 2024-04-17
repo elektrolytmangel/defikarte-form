@@ -16,7 +16,7 @@ export const FieldInfo = ({ textKey, titleKey, infoLink }: Props) => {
 
   return (
     <>
-      <button className="field-info-icon-button" onClick={() => setShow(true)}>
+      <button className="field-info-icon-button" type="button" onClick={() => setShow(true)}>
         <FaRegCircleQuestion size={20} />
       </button>
       <Modal show={show} onHide={() => setShow(false)}>
