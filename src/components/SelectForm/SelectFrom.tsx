@@ -10,13 +10,30 @@ interface Props extends FormProps {
   disabled: boolean;
 }
 
-const SelectForm = ({ name, handle, label, errors, errorMsg, options, disabled, type, infoText }: Props) => {
+const SelectForm = ({
+  name,
+  handle,
+  label,
+  errors,
+  errorMsg,
+  options,
+  disabled,
+  type,
+  infoTitleKey,
+  infoTextKey,
+  infoLink,
+  required,
+}: Props) => {
   const { t } = useTranslation();
 
   return (
     <div className="mb-2">
-      <Form.Label htmlFor={name}>{label}</Form.Label>
-      {infoText && <FieldInfo text={infoText} />}
+      <div className="d-flex align-items-center mb-2">
+        <Form.Label htmlFor={name} className="my-auto">
+          {label} {required && '*'}
+        </Form.Label>
+        {infoTextKey && <FieldInfo titleKey={infoTitleKey} textKey={infoTextKey} infoLink={infoLink} />}
+      </div>
       <Form.Select {...handle} type={type} id={name} isInvalid={errors[name]} disabled={disabled}>
         <option key="empty"></option>
         {options?.map((o) => (

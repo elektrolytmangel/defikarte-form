@@ -70,7 +70,10 @@ const CreateForm = ({ loading, onSubmit }: Props) => {
             options={formComp.options}
             disabled={loading}
             type={formComp.type}
-            infoText={formComp.infoText}
+            infoTitleKey={formComp.infoTitleKey}
+            infoTextKey={formComp.infoTextKey}
+            infoLink={formComp.infoLink}
+            required={formComp.rules?.required}
           />
         );
       } else {
@@ -87,7 +90,8 @@ const CreateForm = ({ loading, onSubmit }: Props) => {
             placeholder={placeholder}
             disabled={loading}
             type={formComp.type}
-            infoText={formComp.infoText}
+            infoTextKey={formComp.infoTextKey}
+            required={formComp.rules?.required}
           />
         );
       }
@@ -101,7 +105,7 @@ const CreateForm = ({ loading, onSubmit }: Props) => {
   return (
     <Form onSubmit={handleSubmit((data) => onHandleSubmit(state, data))} className="form-inline">
       <div className="mb-3 form-inline">
-        <p>{t('position')}</p>
+        <p>{t('position')} *</p>
         <p className={positionError != null ? 'border-bottom  border-danger' : 'border-bottom'}>{position}</p>
         {positionError !== null ? <p className="error">{positionError}</p> : null}
       </div>

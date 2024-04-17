@@ -18,13 +18,16 @@ interface FormProps {
   type: 'text' | 'number' | 'switch' | 'select';
   options?: string[];
   label: string;
+  required?: boolean;
   placeholder?: string;
   defaultValue: any;
   useSwitch?: boolean;
   multiline?: boolean;
   errorMsg?: string;
   keyboardType?: string;
-  infoText?: string;
+  infoTitleKey?: string;
+  infoTextKey?: string;
+  infoLink?: string;
 }
 
 interface AEDData {

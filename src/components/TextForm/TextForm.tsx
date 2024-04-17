@@ -2,6 +2,7 @@ import { Form } from 'react-bootstrap';
 import './TextForm.css';
 import { FormProps } from '../../model/app';
 import { useTranslation } from 'react-i18next';
+import { FieldInfo } from '../FieldInfo/FieldInfo';
 
 interface Props extends FormProps {
   handle: any;
@@ -9,11 +10,29 @@ interface Props extends FormProps {
   disabled: boolean;
 }
 
-const TextForm = ({ name, handle, label, errors, errorMsg, placeholder, disabled, type }: Props) => {
+const TextForm = ({
+  name,
+  handle,
+  label,
+  errors,
+  errorMsg,
+  placeholder,
+  disabled,
+  type,
+  infoTitleKey,
+  infoTextKey,
+  infoLink,
+  required,
+}: Props) => {
   const { t } = useTranslation();
   return (
     <div className="mb-2">
-      <Form.Label htmlFor={name}>{label}</Form.Label>
+      <div className="d-flex align-items-center mb-2">
+        <Form.Label htmlFor={name} className="my-auto">
+          {label} {required && '*'}
+        </Form.Label>
+        {infoTextKey && <FieldInfo titleKey={infoTitleKey} textKey={infoTextKey} infoLink={infoLink} />}
+      </div>
       <Form.Control
         {...handle}
         type={type}

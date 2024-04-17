@@ -1,25 +1,41 @@
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { Trans } from 'react-i18next';
-import { FaCircleInfo } from 'react-icons/fa6';
+import { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { Trans, useTranslation } from 'react-i18next';
+import { FaRegCircleQuestion } from 'react-icons/fa6';
+import './FieldInfo.css';
 
 type Props = {
-  text: string;
+  titleKey?: string;
+  textKey: string;
+  infoLink?: string;
 };
 
-export const FieldInfo = ({ text }: Props) => {
+export const FieldInfo = ({ textKey, titleKey, infoLink }: Props) => {
+  const { t } = useTranslation();
+  const [show, setShow] = useState(false);
+
   return (
-    <OverlayTrigger
-      placement="top"
-      delay={{ show: 250, hide: 400 }}
-      overlay={(props) => (
-        <Tooltip id="overlay-info" {...props}>
-          <Trans i18nKey={text} />
-        </Tooltip>
-      )}
-    >
-      <span className="mx-2">
-        <FaCircleInfo />
-      </span>
-    </OverlayTrigger>
+    <>
+      <button className="field-info-icon-button" onClick={() => setShow(true)}>
+        <FaRegCircleQuestion size={20} />
+      </button>
+      <Modal show={show} onHide={() => setShow(false)}>
+        {titleKey && (
+          <Modal.Header closeButton>
+            <Modal.Title>{t(titleKey)}</Modal.Title>
+          </Modal.Header>
+        )}
+        <Modal.Body>
+          <Trans i18nKey={textKey} />
+        </Modal.Body>
+        {infoLink && (
+          <Modal.Footer className="d-flex justify-content-center">
+            <Button variant="link" href={infoLink} target="__blank">
+              {t('more_information')}
+            </Button>
+          </Modal.Footer>
+        )}
+      </Modal>
+    </>
   );
 };

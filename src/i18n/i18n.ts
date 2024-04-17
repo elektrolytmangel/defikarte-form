@@ -61,8 +61,10 @@ i18n
           no: 'No',
           private: 'Private',
           permissive: 'Permissive',
+          access_info_title: 'What does "Accessible" mean?',
           access_info:
             '<strong>Yes:</strong> The public has an official, legally-enshrined right of access.<br/><strong>No:</strong> General public access is prohibited. Stronger interdiction than private. <br/><strong>Permissive:</strong> Open to general traffic until such time as the owner revokes the permission which they are legally allowed to do at any time in the future. <br/><strong>Private:</strong> General public access is not allowed. Access is granted with individual permission only.',
+          more_information: 'Further information',
         },
       },
       de: {
@@ -110,8 +112,10 @@ i18n
           no: 'Nein',
           private: 'Privat',
           permissive: 'Eingeschränkt zugänglich',
+          access_info_title: 'Was wird unter "Zugänglich" verstanden?',
           access_info:
             '<strong>Ja:</strong> Die Benutzung ist allgemein erlaubt. <br/><strong>Nein:</strong> Kein Zugang für die breite Öffentlichkeit. Stärkeres Verbot als private. <br/><strong>Eingeschränkt zugänglich:</strong> Der Eigentümer duldet die öffentliche Benutzung. Die Erlaubnis oder Duldung kann der Eigentümer jedoch jederzeit widerrufen. <br/><strong>Privat:</strong> Kein Zugang für die breite Öffentlichkeit, Benutzung nach individueller Erlaubnis.',
+          more_information: 'Weiterführende Informationen',
         },
       },
     },

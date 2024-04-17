@@ -100,7 +100,9 @@ const formconfig: FormProps[] = [
     label: 'access',
     defaultValue: '',
     options: ['yes', 'no', 'permissive', 'private'],
-    infoText: 'access_info',
+    infoTitleKey: 'access_info_title',
+    infoTextKey: 'access_info',
+    infoLink: 'https://wiki.openstreetmap.org/wiki/Key:access',
   },
   {
     name: 'indoor',
