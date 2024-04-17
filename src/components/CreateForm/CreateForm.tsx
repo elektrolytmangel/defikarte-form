@@ -4,10 +4,11 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import formconfig from '../../configuration/formconfig';
 import { FORM_STATE, useSharedState } from '../../hooks/useSharedState';
+import { AEDData } from '../../model/app';
+import SelectForm from '../SelectForm/SelectFrom';
 import SwitchForm from '../SwitchForm/SwitchForm';
 import TextForm from '../TextForm/TextForm';
 import './CreateForm.css';
-import { AEDData } from '../../model/app';
 
 type Props = {
   loading: boolean;
@@ -37,6 +38,7 @@ const CreateForm = ({ loading, onSubmit }: Props) => {
       const submitedState = {
         ...formState,
         ...formValues,
+        indoor: formValues.indoor ? 'yes' : 'no',
         emergencyPhone: '144',
       } as AEDData;
       setState(submitedState);
@@ -55,6 +57,25 @@ const CreateForm = ({ loading, onSubmit }: Props) => {
             disabled={loading}
           />
         );
+      } else if (formComp.type === 'select') {
+        return (
+          <SelectForm
+            name={formComp.name}
+            handle={register(formComp.name, { ...formComp.rules })}
+            errors={errors}
+            errorMsg={formComp.errorMsg}
+            defaultValue={formComp.defaultValue}
+            key={index}
+            label={t(formComp.label)}
+            options={formComp.options}
+            disabled={loading}
+            type={formComp.type}
+            infoTitleKey={formComp.infoTitleKey}
+            infoTextKey={formComp.infoTextKey}
+            infoLink={formComp.infoLink}
+            required={formComp.rules?.required}
+          />
+        );
       } else {
         const placeholder = t(formComp.placeholder || '');
         return (
@@ -69,6 +90,8 @@ const CreateForm = ({ loading, onSubmit }: Props) => {
             placeholder={placeholder}
             disabled={loading}
             type={formComp.type}
+            infoTextKey={formComp.infoTextKey}
+            required={formComp.rules?.required}
           />
         );
       }
@@ -82,7 +105,7 @@ const CreateForm = ({ loading, onSubmit }: Props) => {
   return (
     <Form onSubmit={handleSubmit((data) => onHandleSubmit(state, data))} className="form-inline">
       <div className="mb-3 form-inline">
-        <p>{t('position')}</p>
+        <p>{t('position')} *</p>
         <p className={positionError != null ? 'border-bottom  border-danger' : 'border-bottom'}>{position}</p>
         {positionError !== null ? <p className="error">{positionError}</p> : null}
       </div>

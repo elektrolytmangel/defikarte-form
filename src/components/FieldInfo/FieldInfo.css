@@ -1,0 +1,14 @@
+.field-info-icon-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 100%;
+  border: none;
+  cursor: pointer;
+  height: 24px;
+  margin: 0;
+  margin-left: 4px;
+  padding: 0;
+  width: 24px;
+}

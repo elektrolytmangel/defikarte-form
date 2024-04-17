@@ -1,8 +1,8 @@
 import { Form } from 'react-bootstrap';
-import './TextForm.css';
-import { FormProps } from '../../model/app';
 import { useTranslation } from 'react-i18next';
+import { FormProps } from '../../model/app';
 import { FieldInfo } from '../FieldInfo/FieldInfo';
+import './SelectForm.css';
 
 interface Props extends FormProps {
   handle: any;
@@ -10,13 +10,13 @@ interface Props extends FormProps {
   disabled: boolean;
 }
 
-const TextForm = ({
+const SelectForm = ({
   name,
   handle,
   label,
   errors,
   errorMsg,
-  placeholder,
+  options,
   disabled,
   type,
   infoTitleKey,
@@ -25,6 +25,7 @@ const TextForm = ({
   required,
 }: Props) => {
   const { t } = useTranslation();
+
   return (
     <div className="mb-2">
       <div className="d-flex align-items-center mb-2">
@@ -33,17 +34,17 @@ const TextForm = ({
         </Form.Label>
         {infoTextKey && <FieldInfo titleKey={infoTitleKey} textKey={infoTextKey} infoLink={infoLink} />}
       </div>
-      <Form.Control
-        {...handle}
-        type={type}
-        id={name}
-        placeholder={placeholder}
-        isInvalid={errors[name]}
-        disabled={disabled}
-      />
+      <Form.Select {...handle} type={type} id={name} isInvalid={errors[name]} disabled={disabled}>
+        <option key="empty"></option>
+        {options?.map((o) => (
+          <option key={o} value={o}>
+            {t(o)}
+          </option>
+        ))}
+      </Form.Select>
       <Form.Control.Feedback type="invalid">{errorMsg ? t(errorMsg) : t(errors[name]?.message)}</Form.Control.Feedback>
     </div>
   );
 };
 
-export default TextForm;
+export default SelectForm;

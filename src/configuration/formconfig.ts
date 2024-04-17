@@ -96,9 +96,13 @@ const formconfig: FormProps[] = [
   },
   {
     name: 'access',
-    type: 'switch',
+    type: 'select',
     label: 'access',
-    defaultValue: false,
+    defaultValue: '',
+    options: ['yes', 'no', 'permissive', 'private'],
+    infoTitleKey: 'access_info_title',
+    infoTextKey: 'access_info',
+    infoLink: 'https://wiki.openstreetmap.org/wiki/Key:access',
   },
   {
     name: 'indoor',
