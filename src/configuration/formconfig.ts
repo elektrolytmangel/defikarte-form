@@ -99,7 +99,7 @@ const formconfig: FormProps[] = [
     type: 'select',
     label: 'access',
     defaultValue: '',
-    options: ['yes', 'no', 'permissive', 'private'],
+    options: ['yes', 'permissive', 'private'],
     infoTitleKey: 'access_info_title',
     infoTextKey: 'access_info',
     infoLink: 'https://wiki.openstreetmap.org/wiki/Key:access',
