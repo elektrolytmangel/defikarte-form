@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: "${{ github.ref == 'refs/heads/master' && 'production' || 'staging' }}"
-      url: "${{ github.ref == 'refs/heads/master' && 'https://defikarteformstaticapp.z1.web.core.windows.net/' || 'https://defikarteformapp.z1.web.core.windows.net/' }}"
+      url: "${{ github.ref == 'refs/heads/master' && 'https://defikarteformstaticapp.z1.web.core.windows.net/' || 'https://stdefikarteformtesting.z1.web.core.windows.net/' }}"
     name: Build React App
     steps:
     - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
       run: |
         npm ci
         npm run build --if-present
-    - uses: azure/login@v1
+    - uses: azure/login@v2
       with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
